@@ -45,8 +45,8 @@ proc handleHttpRequest*(ctx: HttpCtx, headers: StringTableRef) {.gcsafe, raises:
   except:
     let msg = getCurrentExceptionMsg()
     error(msg, ctx)
-  ctx.closeSocket()
 
+echo "Starting server on port 8080..."
 var server = new GuildenServer
 server.initFullCtx(handleHttpRequest, 8080)
 server.serve(multithreaded = true)
